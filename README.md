@@ -89,7 +89,7 @@
 - SparkKubernetesOperator - для отправки Spark задач на кластер
 - SparkKubernetesSensor - для отслеживания статуса Spark задач
 
-![Логотип проекта](Screenshot_13.png)
+![Логотип проекта](images/Screenshot_13.png)
 
 
 
