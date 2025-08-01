@@ -53,7 +53,7 @@
 - days_on_sell	- Количество дней, прошедших с момента размещения товара на платформе
 - avg_percent_to_sold	- Средний процент выкупа товара (отношение количества проданных единиц к общему количеству заказов)
 
-Исходные данные были дополнены нескольким метриками, рассчитанными на Kubernetes-кластере распределенных вычислений Spark (seller_item_spark_job.py), и размещены в виде отчета seller_items в Greenplum хранилище.
+Исходные данные были дополнены нескольким метриками, рассчитанными на Kubernetes-кластере распределенных вычислений Spark (seller_item_spark_job.py), и размещены в виде отчета seller_items (items_datamart.sql) в Greenplum хранилище.
 
 - returned_items_count - количество товаров на которое оформлен возврат
 - potential_revenue	- потенциальных доход от остатков товаров
@@ -64,13 +64,13 @@
 
 Для построения витрин была использована Greenplum PXF - технология, позволяющая создавать внешние таблицы в Greenplum над отчетами из внешнего хранилища S3.
 
-На основе seller_items была создан и размещен в Greenplum еще один отчет - unreliable_sellers_view (ненадежные продавцы).
+На основе seller_items была создан и размещен в Greenplum еще один отчет - unreliable_sellers_view (ненадежные продавцы, unreliable_sellers_view.sql).
 
 - seller - информация о продавце
 - total_overload_items_count	- количество товаров на складах
 - is_unreliable	- признак ненадежности (критерии: товар на площадке более 100 дней и кол-во товара на складе больше, чем в заказах) 
 
-Так же на основе seller_items была создан отчет по брендам - item_brands_view.
+Так же на основе seller_items была создан отчет по брендам - item_brands_view (item_brands_view.py).
 
 - brand	- имя бренда
 - group_type	- группа товаров
@@ -84,11 +84,13 @@
 # Итоговый DAG
 Были использованы следующие Airflow-операторы:
 
-- SQLExecuteQueryOperator - для создания отчетов
 - SparkKubernetesOperator - для отправки Spark задач на кластер
 - SparkKubernetesSensor - для отслеживания статуса Spark задач
+- SQLExecuteQueryOperator - для создания отчетов
 
 ![Логотип проекта](images/Screenshot_13.png)
+
+
 
 
 
