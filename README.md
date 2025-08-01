@@ -85,7 +85,7 @@
 # Итоговый DAG
 Были использованы Airflow-операторы следующих видов:
 
-- SQLExecuteQueryOperator для создания отчетов
+- SQLExecuteQueryOperator - для создания отчетов
 - SparkKubernetesOperator - для отправки Spark задач на кластер
 - SparkKubernetesSensor - для отслеживания статуса Spark задач
 
