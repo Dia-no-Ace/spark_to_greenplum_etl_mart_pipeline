@@ -84,9 +84,9 @@
 # Итоговый DAG
 Были использованы следующие Airflow-операторы:
 
-- SparkKubernetesOperator - для отправки Spark задач на кластер
-- SparkKubernetesSensor - для отслеживания статуса Spark задач
-- SQLExecuteQueryOperator - для создания отчетов
+- SparkKubernetesOperator - для отправки Spark задачи по обогащению первоначальных данных и записи итогового отчета в целевую таблицу в S3 на кластер (для запуска Spark-задачи так же необходим конфигурационный файл spark_submit.yaml)
+- SparkKubernetesSensor - для отслеживания статуса Spark задачи
+- SQLExecuteQueryOperator - для создания отчетов в Greenplum поверх таблицы в S3
 
 ![Логотип проекта](images/Screenshot_13.png)
 
